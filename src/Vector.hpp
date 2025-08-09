@@ -1,5 +1,5 @@
 /*
- * File: da.h
+ * File: Vector.h
  * Author: Ragib Asif
  * GitHub: https://github.com/ragibasif
  * LinkedIn: https://www.linkedin.com/in/ragibasif/
@@ -9,66 +9,64 @@
  *
  */
 
-#ifndef DA_H_
-#define DA_H_
+#ifndef VECTOR_H
+#define VECTOR_H
 
 #include <iostream>
+#include <optional>
 #include <stdexcept>
 
-class DA {
+class Vector {
   private:
-    int *buffer   = nullptr;
-    int  size     = 0;
-    int  capacity = 0;
+    int   *buffer   = nullptr;
+    size_t size     = 0;
+    size_t capacity = 0;
 
   public:
-    DA( int size = 0 ) : size( size ) {
-        if ( size < 0 ) {
-            throw std::invalid_argument( "Size cannot be less than zero!" );
-        }
+    Vector( size_t size = 0 ) : size( size ) {
         capacity = size * 2;
         buffer   = new int[capacity]{};
         memset( buffer, 0, capacity );
     }
 
-    ~DA() {
+    ~Vector() {
         delete[] buffer;
         buffer   = nullptr;
         size     = 0;
         capacity = 0;
     }
 
-    int get( int index ) {
-        if ( index >= size || index < 0 ) {
+    int get( size_t index ) {
+        if ( index >= size ) {
             throw std::out_of_range( "Index is out of range." );
         }
         return buffer[index];
     }
 
-    void set( int index, int value ) {
-        if ( index >= size || index < 0 ) {
+    void set( size_t index, int value ) {
+        if ( index >= size ) {
             throw std::out_of_range( "Index is out of range." );
         }
         buffer[index] = value;
     }
 
     void print() {
-        for ( int i = 0; i < size; i++ ) { std::cout << buffer[i] << " "; }
+        for ( size_t i = 0; i < size; i++ ) { std::cout << buffer[i] << " "; }
         std::cout << "\n";
     }
 
-    int find( int value ) {
-        for ( int i = 0; i < size; i++ ) {
+    std::optional<size_t> find( int value ) {
+        for ( size_t i = 0; i < size; i++ ) {
             if ( buffer[i] == value ) { return i; }
         }
-        return -1;
+        return std::nullopt; // not found
     }
 
     void resize() {
         capacity *= 2;
         int *temp_buffer = new int[capacity];
         memset( temp_buffer, 0, capacity );
-        for ( int i = 0; i < size; i++ ) { temp_buffer[i] = buffer[i]; }
+        for ( size_t i = 0; i < size; i++ ) { temp_buffer[i] = buffer[i]; }
         delete[] buffer;
         buffer      = temp_buffer;
         temp_buffer = nullptr;
@@ -82,4 +80,4 @@ class DA {
     void pop_front();
 };
 
-#endif // DA_H_
+#endif // VECTOR_H
