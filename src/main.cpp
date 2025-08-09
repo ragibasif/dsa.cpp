@@ -12,11 +12,13 @@
 #include "da.h"
 
 #include <iostream>
-// #include "thirdparty/dbg.h"
 
 int main( void ) {
 
-    DA *v = new DA( -10 );
+    DA v( 10 );
+    for ( int i = 0; i < 10; i++ ) { v.set( i, i ); }
+    v.print();
+    std::cout << v.find( 5 ) << " " << v.find( 55 );
 
     std::cerr << std::endl
               << "Finished in " << clock() * 1.0 / CLOCKS_PER_SEC << " sec"
