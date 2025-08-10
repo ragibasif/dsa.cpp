@@ -1,5 +1,5 @@
 /*
- * File: Vector.h
+ * File: da.hpp
  * Author: Ragib Asif
  * GitHub: https://github.com/ragibasif
  * LinkedIn: https://www.linkedin.com/in/ragibasif/
@@ -9,27 +9,29 @@
  *
  */
 
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef DA_HPP
+#define DA_HPP
 
 #include <iostream>
 #include <optional>
 #include <stdexcept>
 
-class Vector {
+namespace dsa {
+
+class da {
   private:
     int   *buffer   = nullptr;
     size_t size     = 0;
     size_t capacity = 0;
 
   public:
-    Vector( size_t size = 0 ) : size( size ) {
+    da( size_t size = 0 ) : size( size ) {
         capacity = size * 2;
         buffer   = new int[capacity]{};
         memset( buffer, 0, capacity );
     }
 
-    ~Vector() {
+    ~da() {
         delete[] buffer;
         buffer   = nullptr;
         size     = 0;
@@ -62,6 +64,7 @@ class Vector {
         return std::nullopt; // not found
     }
 
+    // TODO: this needs to be tested
     void resize() {
         capacity *= 2;
         int *temp_buffer = new int[capacity];
@@ -78,6 +81,14 @@ class Vector {
     void pop_back();
     void push_front( int value );
     void pop_front();
+    void insert( size_t index, int value );
+    void remove( size_t index );
+    void sort();
+    void right_rotate( size_t count );
+    void left_rotate( size_t count );
+    void shuffle();
 };
 
-#endif // VECTOR_H
+} // namespace dsa
+
+#endif // DA_HPP

@@ -9,7 +9,7 @@
  *
  */
 
-#include "Vector.hpp"
+#include "da.hpp"
 #include "thirdparty/dbg.h"
 
 #include <iostream>
@@ -31,9 +31,28 @@ void generate_subsets( std::vector<int> subset, int start, int end ) {
     }
 }
 
+// void generate_permutations( std::vector<int> permutation, int start, int end
+// ) {
+//     if ( start == end + 1 ) {
+//         dbg( permutation, permutation.size() );
+//         // for ( int i = 0; i < permutation.size(); i++ ) {
+//         //     std::cout << permutation[i] << " ";
+//         // }
+//         // std::cout << "\n";
+//     } else {
+//         // include start in the permutation
+//         permutation.push_back( start );
+//         generate_permutations( permutation, start + 1, end );
+//         permutation.pop_back();
+//         // don't include start in the permutation
+//         generate_permutations( permutation, start + 1, end );
+//     }
+// }
+//
+
 int main( void ) {
 
-    Vector v( 10 );
+    DA v( 10 );
     for ( int i = 0; i < 10; i++ ) { v.set( i, i ); }
     v.print();
 
