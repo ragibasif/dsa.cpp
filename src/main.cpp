@@ -9,73 +9,20 @@
  *
  */
 
-#include "da.hpp"
-#include "thirdparty/dbg.h"
+#include "test_vector.hpp"
 
+#include <chrono>
 #include <iostream>
 
-void generate_subsets( std::vector<int> subset, int start, int end ) {
-    if ( start == end + 1 ) {
-        dbg( subset, subset.size() );
-        // for ( int i = 0; i < subset.size(); i++ ) {
-        //     std::cout << subset[i] << " ";
-        // }
-        // std::cout << "\n";
-    } else {
-        // include start in the subset
-        subset.push_back( start );
-        generate_subsets( subset, start + 1, end );
-        subset.pop_back();
-        // don't include start in the subset
-        generate_subsets( subset, start + 1, end );
-    }
-}
+int main() {
 
-// void generate_permutations( std::vector<int> permutation, int start, int end
-// ) {
-//     if ( start == end + 1 ) {
-//         dbg( permutation, permutation.size() );
-//         // for ( int i = 0; i < permutation.size(); i++ ) {
-//         //     std::cout << permutation[i] << " ";
-//         // }
-//         // std::cout << "\n";
-//     } else {
-//         // include start in the permutation
-//         permutation.push_back( start );
-//         generate_permutations( permutation, start + 1, end );
-//         permutation.pop_back();
-//         // don't include start in the permutation
-//         generate_permutations( permutation, start + 1, end );
-//     }
-// }
-//
+    auto start = std::chrono::high_resolution_clock::now();
 
-int main( void ) {
+    test_vector();
 
-    DA v( 10 );
-    for ( int i = 0; i < 10; i++ ) { v.set( i, i ); }
-    v.print();
-
-    auto result = v.find( 5 );
-    if ( result.has_value() ) {
-        std::cout << "Found at index: " << *result << "\n";
-    } else {
-        std::cout << "Value not found.\n";
-    }
-
-    result = v.find( 55 );
-    if ( result.has_value() ) {
-        std::cout << "Found at index: " << *result << "\n";
-    } else {
-        std::cout << "Value not found.\n";
-    }
-
-    std::vector<int> subset;
-    generate_subsets( subset, 0, 3 );
-
-    std::cerr << std::endl
-              << "Finished in " << clock() * 1.0 / CLOCKS_PER_SEC << " sec"
-              << std::endl;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration_vec = end - start;
+    std::cout << "Finished in: " << duration_vec.count() << std::endl;
 
     return EXIT_SUCCESS;
-} // main
+}

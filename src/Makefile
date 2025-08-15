@@ -27,8 +27,8 @@ BUILD_DIRECTORY := build
 EXECUTABLE := program
 EXEC_PATH := $(BUILD_DIRECTORY)/$(EXECUTABLE)
 
-SRCS := $(wildcard *.cpp)
-HDRS := $(wildcard *.hpp)
+SRCS := $(wildcard *.cpp) $(wildcard */*.cpp)
+HDRS := $(wildcard *.hpp) $(wildcard */*.hpp)
 OBJS := $(patsubst %.cpp, $(BUILD_DIRECTORY)/%.o, $(SRCS))
 
 .PHONY: all clean help run check debug
