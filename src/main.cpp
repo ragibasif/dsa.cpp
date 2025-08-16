@@ -9,7 +9,7 @@
  *
  */
 
-#include "test_vector.hpp"
+#include "test_da.hpp"
 
 #include <chrono>
 #include <iostream>
@@ -18,7 +18,7 @@ int main() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    test_vector();
+    test_da();
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration_vec = end - start;

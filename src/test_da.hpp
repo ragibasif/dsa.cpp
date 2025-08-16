@@ -1,5 +1,5 @@
 /*
- * File: test_vector.hpp
+ * File: test_da.hpp
  * Author: Ragib Asif
  * GitHub: https://github.com/ragibasif
  * LinkedIn: https://www.linkedin.com/in/ragibasif/
@@ -9,9 +9,9 @@
  *
  */
 
-#ifndef TEST_VECTOR_HPP
-#define TEST_VECTOR_HPP
+#ifndef TEST_DA_HPP
+#define TEST_DA_HPP
 
-extern void test_vector();
+extern void test_da();
 
-#endif // TEST_VECTOR_HPP
+#endif // TEST_DA_HPP

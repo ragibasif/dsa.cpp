@@ -1,5 +1,5 @@
 /*
- * File: vector.hpp
+ * File: da.hpp
  * Author: Ragib Asif
  * GitHub: https://github.com/ragibasif
  * LinkedIn: https://www.linkedin.com/in/ragibasif/
@@ -8,22 +8,22 @@
  * Version 1.0.0
  */
 
-#ifndef VECTOR_HPP
-#define VECTOR_HPP
+#ifndef DA_HPP
+#define DA_HPP
 
 #include <algorithm>
 #include <iostream>
 #include <optional>
 #include <stdexcept>
 
-namespace dsa {
+namespace lexicon {
 
-constexpr size_t DEFAULT_SIZE     = 0;
-constexpr size_t DEFAULT_CAPACITY = 0;
-constexpr size_t GROWTH_FACTOR    = 2;
+constexpr size_t DA_DEFAULT_SIZE     = 0;
+constexpr size_t DA_DEFAULT_CAPACITY = 0;
+constexpr size_t DA_GROWTH_FACTOR    = 2;
 
 template <typename T>
-class vector {
+class da {
   private:
     T     *buffer_;
     size_t size_;
@@ -36,54 +36,54 @@ class vector {
     }
 
   public:
-    // Default constructor - Creates an empty vector with no elements.
-    vector() : size_( DEFAULT_SIZE ), capacity_( DEFAULT_CAPACITY ) {
+    // Default constructor - Creates an empty da with no elements.
+    da() : size_( DA_DEFAULT_SIZE ), capacity_( DA_DEFAULT_CAPACITY ) {
         buffer_ = new T[capacity_];
     }
 
-    // Fill constructors - Creates a vector with a given size and
+    // Fill constructors - Creates a da with a given size and
     // optionally an item to fill every element.
-    vector( int size ) {
-        if ( size < 0 ) { return vector(); }
+    da( int size ) {
+        if ( size < 0 ) { return da(); }
         size_     = size;
-        capacity_ = size_ * GROWTH_FACTOR;
+        capacity_ = size_ * DA_GROWTH_FACTOR;
         buffer_   = new T[capacity_]{};
     }
 
-    vector( int size, T item ) {
-        if ( size < 0 ) { return vector(); }
+    da( int size, T item ) {
+        if ( size < 0 ) { return da(); }
         size_     = size;
-        capacity_ = size_ * GROWTH_FACTOR;
+        capacity_ = size_ * DA_GROWTH_FACTOR;
         buffer_   = new T[capacity_]{};
         for ( size_t i = 0; i < size_; i++ ) { buffer_[i] = item; }
     }
 
     // Destructor - Frees any dynamically allocated memory and calls
     // element destructors.
-    ~vector() {
+    ~da() {
         delete[] buffer_;
         buffer_   = nullptr;
         size_     = 0;
         capacity_ = 0;
     }
 
-    // TODO: Range constructor - Creates a vector from a range of
+    // TODO: Range constructor - Creates a da from a range of
     // iterators (copies all elements from another container/range).
 
-    // TODO: Copy constructor - Creates a vector as a copy of another
-    // vector.
+    // TODO: Copy constructor - Creates a da as a copy of another
+    // da.
 
-    // TODO: Move constructor - Creates a vector by moving the resources
-    // of another vector without copying (leaves the other empty).
+    // TODO: Move constructor - Creates a da by moving the resources
+    // of another da without copying (leaves the other empty).
 
-    // TODO: Initializer list constructor - Creates a vector from an
+    // TODO: Initializer list constructor - Creates a da from an
     // initializer list, e.g., {1, 2, 3}.
 
     // TODO: Copy assignment (operator=) - Replaces contents with a copy of
-    // another vector.
+    // another da.
 
     // TODO: Move assignment (operator=) - Replaces contents by taking over the
-    // resources of another vector.
+    // resources of another da.
 
     // TODO: Initializer list assignment - Replaces contents with the values
     // from an initializer list.
@@ -119,17 +119,17 @@ class vector {
     // data() - Returns a pointer to the underlying raw array.
     const T *data() { return *buffer_; }
 
-    // empty() - Returns whether the vector has no elements.
+    // empty() - Returns whether the da has no elements.
     const bool empty() { return size_ > 0; }
 
     // size() - Returns the number of elements currently in the
-    // vector.
+    // da.
     const size_t size() { return size_; }
 
     // TODO: max_size() - Returns the maximum number of elements that can be
     // held (theoretical limit).
 
-    // capacity() - Returns the current number of elements the vector
+    // capacity() - Returns the current number of elements the da
     // can hold without reallocating.
     const size_t capacity() { return capacity_; }
 
@@ -166,11 +166,11 @@ class vector {
     // TODO: erase() - Removes an element or range of elements from specific
     // positions.
 
-    // FIX: resize() - Changes the size of the vector (either truncates
+    // FIX: resize() - Changes the size of the da (either truncates
     // or appends default-initialized elements).
     void resize() {
         if ( capacity_ == 0 ) { capacity_++; }
-        capacity_ *= GROWTH_FACTOR;
+        capacity_ *= DA_GROWTH_FACTOR;
         T *temp_buffer = new T[capacity_];
         for ( size_t i = 0; i < size_; i++ ) { temp_buffer[i] = buffer_[i]; }
         std::swap( buffer_, temp_buffer );
@@ -207,16 +207,16 @@ class vector {
 
     // TODO: crbegin() / crend() - Constant reverse iterators.
 
-    // TODO: swap() - Exchanges the contents with another vector in
+    // TODO: swap() - Exchanges the contents with another da in
     // constant time.
 
     // TODO: operator==, operator!=, operator<, operator<=, operator>,
-    // operator>= - Compare vectors lexicographically or for equality.
+    // operator>= - Compare das lexicographically or for equality.
 
     // TODO: get_allocator() - Returns the allocator object used for memory
     // management.
 };
 
-} // namespace dsa
+} // namespace lexicon
 
-#endif // VECTOR_HPP
+#endif // DA_HPP

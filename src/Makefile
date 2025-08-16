@@ -24,7 +24,7 @@ LDFLAGS := -v -lc
 
 BUILD_DIRECTORY := build
 
-EXECUTABLE := program
+EXECUTABLE := lexicon
 EXEC_PATH := $(BUILD_DIRECTORY)/$(EXECUTABLE)
 
 SRCS := $(wildcard *.cpp) $(wildcard */*.cpp)

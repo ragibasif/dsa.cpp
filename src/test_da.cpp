@@ -1,5 +1,5 @@
 /*
- * File: test_vector.cpp
+ * File: test_da.cpp
  * Author: Ragib Asif
  * GitHub: https://github.com/ragibasif
  * LinkedIn: https://www.linkedin.com/in/ragibasif/
@@ -9,17 +9,15 @@
  *
  */
 
-#include "test_vector.hpp"
+#include "test_da.hpp"
 
-#include "vector.hpp"
+#include "da.hpp"
 
 #include <cassert>
 #include <iostream>
 
-constexpr int SIZE = 1000000;
-
-void test_vector() {
-    dsa::vector<int> v;
+void test_da() {
+    lexicon::da<int> v;
     for ( int i = 0; i < 10; i++ ) { v.push_back( i ); }
     v.print();
 
